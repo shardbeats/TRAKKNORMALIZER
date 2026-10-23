@@ -1,6 +1,6 @@
 # TRAKKNORMALIZER
 
-Part of the ShardBeats **TRAKK** family (ex `simple-peak-normalizer`).
+Part of the ShardBeats **TRAKK SUITE** (ex `simple-peak-normalizer`).
 
 Batch audio peak normalization tool with a PySide6 GUI. Every clip is normalized to its **own peak level** using linear gain while preserving sample rate and bit depth.
 
