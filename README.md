@@ -4,9 +4,7 @@
 
 **[Download for Windows](https://github.com/shardbeats/TRAKKNORMALIZER/releases/latest)** · **[All 6 tools](https://shardbeats.github.io/tools/)** · **[Free beat pack (WAV + stems)](https://shardbeats.github.io/landing/)**
 
-<!-- Screenshot: save the image as docs/screenshot.png, then uncomment this block
 <p align="center"><img src="docs/screenshot.png" alt="TRAKKNORMALIZER peak-normalizing a folder of drum samples" width="880"></p>
--->
 
 Free and open source (MIT). Portable exe, no install, no account — your audio never leaves your computer.
 
