@@ -18,7 +18,7 @@ trakknormalizer/
 │                      │  - normalize_file() (measure → tolerance check → apply)
 │                      │  - find_audio_files() (extension-based discovery)
 ├── styles.qss         Dark theme (editable without touching code).
-├── build_exe.py       Portable recipe (PyInstaller one-file + bundled FFmpeg).
+├── build_portable.py One-dir build + portable ZIP (PyInstaller, FFmpeg bundled).
 ├── make_icon.py       Regenerates icon.ico / icon.png.
 ├── start.bat          One-click setup + launch (creates .venv, installs, launches).
 └── requirements.txt   Runtime dependencies.
@@ -35,7 +35,7 @@ won't break each other.
 | Every 6–12 months | Update dependencies (`pip install -U ...`, see §3) | `requirements.txt` |
 | Every 12 months | Test against the latest stable FFmpeg | https://ffmpeg.org/download.html |
 | After every change | Run the suite (`python -m pytest tests -q`) | `tests/` + CI in `.github/workflows/` |
-| After every change | Rebuild the exe and test it in a clean folder | `build_exe.py` |
+| After every change | Rebuild the portable ZIP and test it in a clean folder | `build_portable.py` |
 | Always | Never commit `.venv/`, `build/`, `dist/`, `*.log` | Already covered by `.gitignore` |
 
 ## 3. Updating dependencies without breaking anything
@@ -58,24 +58,27 @@ won't break each other.
   output format (`max_volume: ... dB`), the first place to check is
   `measure_peak_db()` — the test `test_measure_peak_of_generated_tone`
   catches it immediately.
-- The app bundles FFmpeg **inside** the exe (full portability).
-  `build_exe.py` looks for it on PATH (falling back to the winget path in
-  `FFMPEG_CANDIDATES`); when missing it **fails** instead of producing a
-  non-portable exe. If you switch PCs or reinstall FFmpeg another way,
-  update that list.
+- FFmpeg travels **inside** the app folder (`_internal\`), so the portable and
+  the ZIP need nothing on PATH. `build_portable.py` looks for it on PATH
+  (falling back to the winget path in `FFMPEG_CANDIDATES`); when missing it
+  **fails** instead of producing a build without FFmpeg. If you switch PCs or
+  reinstall FFmpeg another way, update that list.
 - Measurement has a silence floor (`SILENCE_FLOOR_DB = -90.0`):
   anything below counts as silence and is not normalized. Conscious
   constant, not a bug.
 
-## 5. Rebuilding the portable exe
+## 5. Rebuilding the portable ZIP
 
 ```powershell
-python build_exe.py   # builds dist\TRAKKNORMALIZER.exe
+python build_portable.py   # dist\TRAKKNORMALIZER-portable-<version>.zip
 ```
 
+- One-dir build: the ZIP contains `TRAKKNORMALIZER\TRAKKNORMALIZER.exe` plus
+  `_internal\` (Qt, FFmpeg). Starts instantly; nothing is extracted to `%TMP%`.
+- The old single-file build re-extracted ~200 MB on every launch; it was removed.
 - `icon.ico` is used when present; otherwise the exe gets the default icon
   (regenerate with `python make_icon.py`).
-- Quick check: 1 quiet file (−12 dB) → comes out `*_N` at target;
+- Quick check: unzip, run 1 quiet file (−12 dB) → comes out `*_N` at target;
   passing the same file again → skipped by suffix.
 
 ## 6. Decided behaviors (not bugs)

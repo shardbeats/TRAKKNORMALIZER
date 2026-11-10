@@ -6,7 +6,7 @@
 
 <p align="center"><img src="docs/screenshot.png" alt="TRAKKNORMALIZER peak-normalizing a folder of drum samples" width="880"></p>
 
-Free and open source (MIT). Portable exe, no install, no account — your audio never leaves your computer.
+Free and open source (MIT). Portable ZIP, no install, no account — your audio never leaves your computer.
 
 
 Part of the ShardBeats **TRAKK SUITE** (ex `simple-peak-normalizer`).
@@ -23,13 +23,13 @@ Batch audio peak normalization tool with a PySide6 GUI. Every clip is normalized
 - Folder structure: recreates the source structure inside the output folder (or in a `<source>_N` folder next to it).
 - Replace-original option (only applies when saving next to the source).
 - Formats: WAV, MP3, FLAC, AIFF, OGG, M4A.
-- Portable: build into a single `.exe` with FFmpeg bundled.
+- Portable: one-dir build shipped as a ZIP with FFmpeg included (instant startup).
 
 ## Requirements
 
 - Windows
 - Python 3.x (tested with 3.14)
-- FFmpeg on PATH (to run from source). The compiled `.exe` includes it.
+- FFmpeg on PATH (to run from source). The compiled build includes it.
 
 ## Run from source
 
@@ -57,11 +57,15 @@ python -m venv .venv
 3. Press **START**.
 4. Processed files are saved with the `_N` suffix at the output location.
 
-## Build the `.exe`
+## Build the portable ZIP
 
 ```
-python build_exe.py
+python build_portable.py
 ```
+
+Output: `dist\TRAKKNORMALIZER-portable-<version>.zip`. Unzip once and run
+`TRAKKNORMALIZER\TRAKKNORMALIZER.exe` — FFmpeg is included and nothing is
+extracted on launch (the old single-file build re-extracted ~200 MB every run).
 
 ## Tests
 
@@ -82,7 +86,7 @@ To regenerate the app icon:
 python make_icon.py
 ```
 
-Place `icon.ico` next to `build_exe.py` to have it included in the next build.
+Place `icon.ico` next to `build_portable.py` to have it included in the next build.
 
 ## Project structure
 
@@ -92,7 +96,7 @@ trakknormalizer/
 ├── gui.py           # GUI
 ├── normalizer.py    # Engine: peak analysis, normalization, folder mirroring
 ├── styles.qss       # Dark theme
-├── build_exe.py     # PyInstaller build script
+├── build_portable.py # PyInstaller one-dir + portable ZIP
 ├── requirements.txt
 ├── start.bat        # Setup + launch
 ```
@@ -128,4 +132,4 @@ Six free, offline tools for beatmakers. They are independent: install only what 
 
 **Does it work offline?** Yes. Nothing is uploaded.
 
-**Which systems?** Windows. The compiled `.exe` bundles FFmpeg.
+**Which systems?** Windows. The compiled build bundles FFmpeg.
