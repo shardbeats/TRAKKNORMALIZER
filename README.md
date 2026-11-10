@@ -15,7 +15,7 @@ Batch audio peak normalization tool with a PySide6 GUI. Every clip is normalized
 
 ## Features
 
-- Per-file peak normalization (target in dB, -1.0 dB by default).
+- Per-file peak normalization (target in dB, 0.0 dB by default).
 - Skips clips already within a tolerance of the target (0.5 dB by default).
 - Parallel processing (2 threads).
 - Drag-and-drop files or folders, or add folders with a button.

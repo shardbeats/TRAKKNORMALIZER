@@ -327,14 +327,14 @@ class MainWindow(QMainWindow):
         target_row.addStretch(1)
         self.target_spin = QDoubleSpinBox()
         self.target_spin.setObjectName("target_spin")
-        self.target_spin.setRange(-12.0, -0.1)
+        self.target_spin.setRange(-12.0, 0.0)
         self.target_spin.setDecimals(1)
         self.target_spin.setSingleStep(0.5)
-        self.target_spin.setValue(-1.0)
+        self.target_spin.setValue(0.0)
         self.target_spin.setSuffix(" dB")
         self.target_spin.setToolTip(
             "Every clip is normalized so its own peak reaches this level. "
-            "0 dB is the maximum; -1 dB leaves headroom to avoid clipping."
+            "0 dB is the maximum (loudest clean level)."
         )
         target_row.addWidget(self.target_spin)
         settings_layout.addLayout(target_row)
@@ -801,7 +801,7 @@ def load_app_icon() -> Optional[QIcon]:
 def main():
     app = QApplication(sys.argv)
     app.setApplicationName("TRAKKNORMALIZER")
-    app.setApplicationVersion("1.0.0")
+    app.setApplicationVersion("1.1.1")
 
     app_icon = load_app_icon()
     if app_icon is not None:
