@@ -25,7 +25,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 EXE_DIR = ROOT / "dist" / "portable" / "TRAKKNORMALIZER"
-DOCS = ("LICENSE", "NOTICE.md", "THIRD-PARTY-NOTICES.md", "README.md")
+DOCS = ("LICENSE", "LICENSING.md", "TRADEMARK.md", "NOTICE.md", "THIRD-PARTY-NOTICES.md", "README.md")
 
 FFMPEG_CANDIDATES = [
     Path.home() / "AppData/Local/Microsoft/WinGet/Packages"

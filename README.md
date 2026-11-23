@@ -6,7 +6,7 @@
 
 <p align="center"><img src="docs/screenshot.png" alt="TRAKKNORMALIZER peak-normalizing a folder of drum samples" width="880"></p>
 
-Free and open source (MIT). Portable ZIP, no install, no account — your audio never leaves your computer.
+Free and open source (GPL-3.0-only). Portable ZIP, no install, no account — your audio never leaves your computer.
 
 
 Part of the ShardBeats **TRAKK SUITE** (ex `simple-peak-normalizer`).
@@ -120,7 +120,7 @@ Six free, offline tools for beatmakers. They are independent: install only what 
 
 ## FAQ
 
-**Is it free?** Yes. MIT licensed, free for personal and commercial use, with no account and no usage limits.
+**Is it free?** Yes. GPL-3.0-only licensed, free for personal and commercial use, with no account and no usage limits.
 
 **What is peak normalization, and why per clip?** A conventional normalizer raises everything by the same amount, so one clip that was already loud ends up clipping. This one measures each file and applies just the gain that file needs to reach the target.
 
